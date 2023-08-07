@@ -1,4 +1,7 @@
-FROM openjdk:8
+FROM openjdk:17-jdk-alpine
+WORKDIR /app
+RUN ./mvnw package
+COPY target/*.jar app.jar
 EXPOSE 8080
-ADD target/spring-petclinic-3.1.0-SNAPSHOT.jar.original spring-petclinic-3.1.0-SNAPSHOT.jar.original
-ENTRYPOINT["java","-jar","/spring-petclinic-3.1.0-SNAPSHOT.jar.original"]
+CMD ["java","-jar","app.jar"]
+
